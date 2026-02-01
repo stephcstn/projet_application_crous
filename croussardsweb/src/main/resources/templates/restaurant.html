@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Étudiants - Croussards</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+<header>
+    <nav>
+        <div class="logo-container">
+            <img th:src="@{/images/croussards-logo.png}" alt="Logo Croussards">
+        </div>
+        <h1>Croussards</h1>
+        <ul>
+            <li><a th:href="@{/}">Accueil</a></li>
+            <li><a th:href="@{/login}">Connexion</a></li>
+            <li><a th:href="@{/students}">Etudiants</a></li>
+            <li><a th:href="@{/restaurants}">Restaurants</a></li>
+        </ul>
+        <div class="brand-container">
+            <img th:src="@{/images/Logo-up.svg}" alt="Logo Croussards">
+        </div>
+    </nav>
+</header>
+
+<main class="container">
+    <h2>Restaurant choisi</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Numéro Restaurant</th>
+            <th>Nom</th>
+            <th>Adresse</th>
+            <th>Type</th>
+            <th>Avis</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${restaurant == null}">
+            <td colspan="7">Le restaurant n'a pas été trouvé</td>
+        </tr>
+        <tr th:unless="${restaurant == null}">
+            <td><span th:text="${restaurant.idResto}">ID</span></td>
+            <td><span th:text="${restaurant.name}">Nom</span></td>
+            <td><span th:text="${restaurant.address}">Adresse</span></td>
+            <td><span th:text="${restaurant.typeResto}">Type</span></td>
+            <td>
+                <a th:href="@{'/restaurants/' + ${restaurant.idResto} + '/reviews'}">
+                    Voir les avis
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</main>
+
+<footer>
+    <p>&copy; 2025 Équipe Croussards (Basile DUFRENE-Evan RIBOULEAU-Stephane CASTAN) - L3 Informatique</p>
+</footer>
+
+<script th:src="@{/js/main.js}"></script>
+
+</body>
+</html>
+

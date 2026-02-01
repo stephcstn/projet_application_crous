@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>student Web Application</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header>
+    <nav>
+        <div class="logo-container">
+            <img th:src="@{/images/croussards-logo.png}" alt="Logo Croussards">
+        </div>
+        <h1>Croussards </h1>
+        <ul>
+            <li><a th:href="@{/}">Accueil</a></li>
+            <li><a th:href="@{/login}">Connexion</a></li>
+            <li><a th:href="@{/students}">Etudiants</a></li>
+            <li><a th:href="@{/restaurants}">Restaurants</a></li>
+        </ul>
+        <div class="brand-container">
+            <img th:src="@{/images/Logo-up.svg}" alt="Logo Croussards">
+        </div>
+    </nav>
+</header>
+
+<main class="container">
+
+    <h2>Découvrez les Meilleurs Restaurants de l'Université</h2>
+
+    <section id="restaurants-list">
+        <p id="loading-message">Chargement des restaurants en cours...</p>
+    </section>
+
+    <h2>Découvrez les Avis de l'Université</h2>
+
+    <section id="reviews-list">
+        <p id="loading-message">Chargement des avis en cours...</p>
+    </section>
+
+    <h2>Découvrez les Etudiants de l'Université</h2>
+
+    <section id="students-list">
+        <p id="loading-message">Chargement des étudiants en cours...</p>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2025 Équipe Croussards (Basile DUFRENE-Evan RIBOULEAU-Stephane CASTAN) - L3 Informatique</p>
+</footer>
+
+<script th:src="@{/js/main.js}"></script>
+
+</body>
+</html>

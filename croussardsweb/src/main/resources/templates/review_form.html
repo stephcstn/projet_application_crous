@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Croussards - Avis & Restaurants</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-container">
+                <img th:src="@{/images/croussards-logo.png}" alt="Logo Croussards">
+            </div>
+            <h1>Croussards </h1>
+            <ul>
+                <li><a th:href="@{/}">Accueil</a></li>
+                <li><a th:href="@{/login}">Connexion</a></li>
+                <li><a th:href="@{/students}">Etudiants</a></li>
+                <li><a th:href="@{/restaurants}">Restaurants</a></li>
+            </ul>
+            <div class="brand-container">
+                <img th:src="@{/images/Logo-up.svg}" alt="Logo Croussards">
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <h1>Ajouter un Nouvel Avis</h1>
+
+        <form id="reviewForm">
+
+            <div>
+                <label for="etudiantId">Etudiant :</label>
+                <select id="etudiantId" required>
+                    <option value="">-- Choisir un etudiant --</option>
+                    <option th:each="restaurant : ${s}">
+                            th:value="${resto.idResto}"
+                            th:text="${resto.name}">Nom du Restaurant</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="nbStars">Note (1-5 étoiles) :</label>
+                <select id="nbStars" required>
+                    <option value="5">5 ⭐</option>
+                    <option value="4">4 ⭐</option>
+                    <option value="3">3 ⭐</option>
+                    <option value="2">2 ⭐</option>
+                    <option value="1">1 ⭐</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="comments">Commentaire :</label>
+                <textarea id="comments" rows="4" maxlength="500"></textarea>
+            </div>
+
+            <button type="submit">Soumettre l'Avis</button>
+
+            <p id="message"></p>
+        </form>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Équipe Croussards (Basile DUFRENE-Evan RIBOULEAU-Stephane CASTAN) - L3 Informatique</p>
+    </footer>
+
+    <script src="../static/js/main.js"></script>
+
+</body>
+</html>

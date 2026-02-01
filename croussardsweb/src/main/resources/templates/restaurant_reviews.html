@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant choisi - Croussards</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+<header>
+    <nav>
+        <div class="logo-container">
+            <img th:src="@{/images/croussards-logo.png}" alt="Logo Croussards">
+        </div>
+        <h1>Croussards</h1>
+        <ul>
+            <li><a th:href="@{/}">Accueil</a></li>
+            <li><a th:href="@{/login}">Connexion</a></li>
+            <li><a th:href="@{/students}">Etudiants</a></li>
+            <li><a th:href="@{/restaurants}">Restaurants</a></li>
+        </ul>
+        <div class="brand-container">
+            <img th:src="@{/images/Logo-up.svg}" alt="Logo Croussards">
+        </div>
+    </nav>
+</header>
+
+<main class="container">
+    <h2>Restaurant choisi</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID Avis</th>
+            <th>ID Restaurant</th>
+            <th>Nombres d'étoiles</th>
+            <th>Commentaire</th>
+            <th>Date de Publication</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${#lists.isEmpty(reviews)}">
+            <td colspan="6">Aucun avis pour ce restaurant</td>
+        </tr>
+        <tr th:each="review: ${reviews}">
+            <td th:text="${review.idReview}">ID Avis</td>
+            <td th:text="${review.student.numStudent}">ID Etudiant</td>
+            <td th:text="${review.nbStars}">Nombre d'étoiles</td>
+            <td th:text="${review.comments}">Commentaire</td>
+            <td th:text="${#temporals.format(review.datePubli, 'dd/MM/yyyy')}">Date de Publication</td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{'/restaurants/' + ${restaurant.idResto} + '/reviews/new'}" class="btn btn-primary">
+        Ajouter un avis
+    </a>
+</main>
+
+<footer>
+    <p>&copy; 2025 Équipe Croussards (Basile DUFRENE-Evan RIBOULEAU-Stephane CASTAN) - L3 Informatique</p>
+</footer>
+
+<script th:src="@{/js/main.js}"></script>
+
+</body>
+</html>
+

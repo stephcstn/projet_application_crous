@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>student Web Application</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header>
+    <nav>
+        <div class="logo-container">
+            <img th:src="@{/images/croussards-logo.png}" alt="Logo Croussards">
+        </div>
+        <h1>Croussards </h1>
+        <ul>
+            <li><a th:href="@{/}">Accueil</a></li>
+            <li><a th:href="@{/login}">Connexion</a></li>
+            <li><a th:href="@{/students}">Etudiants</a></li>
+            <li><a th:href="@{/restaurants}">Restaurants</a></li>
+        </ul>
+        <div class="brand-container">
+            <img th:src="@{/images/Logo-up.svg}" alt="Logo Croussards">
+        </div>
+    </nav>
+</header>
+
+<main class="container">
+
+    <div class="login-container">
+        <h2>CONNEXION</h2>
+
+        <form action="/login" method="POST">
+            <div class="input-group">
+                <label for="username">USERNAME</label>
+                <input type="text" id="username" name="username" placeholder="scastan17">
+            </div>
+
+            <div class="input-group">
+                <label for="pwdHash">MOT DE PASSE</label>
+                <input type="password" id="pwdHash" name="pwdHash" placeholder="••••••••">
+            </div>
+
+            <button type="submit">SE CONNECTER</button>
+        </form>
+
+        <div class="divider">OU</div>
+        <div class="footer">
+            Pas encore inscrit? <a th:href="@{/register}">Créez votre compte ici</a>
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    <p>&copy; 2025 Équipe Croussards (Basile DUFRENE-Evan RIBOULEAU-Stephane CASTAN) - L3 Informatique</p>
+</footer>
+
+<script th:src="@{/js/main.js}"></script>
+
+</body>
+</html>

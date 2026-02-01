@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Étudiants - Croussards</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+<header>
+    <nav>
+        <div class="logo-container">
+            <img th:src="@{/images/croussards-logo.png}" alt="Logo Croussards">
+        </div>
+        <h1>Croussards</h1>
+        <ul>
+            <li><a th:href="@{/}">Accueil</a></li>
+            <li><a th:href="@{/login}">Connexion</a></li>
+            <li><a th:href="@{/students}">Etudiants</a></li>
+            <li><a th:href="@{/restaurants}">Restaurants</a></li>
+        </ul>
+        <div class="brand-container">
+            <img th:src="@{/images/Logo-up.svg}" alt="Logo Croussards">
+        </div>
+    </nav>
+</header>
+
+<main class="container">
+    <h2>Liste des étudiants</h2>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Numéro Etudiant</th>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Mail</th>
+            <th>Mots de passe</th>
+            <th>Date de naissance</th>
+            <th>pseudo</th>
+            <th>Avis</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${students.empty}">
+            <td colspan="2">Aucun étudiant en base de données</td>
+        </tr>
+        <tr th:each="student: ${students}">
+            <td><a th:href="@{'/students/' + ${student.numStudent}}" th:text="${student.numStudent}">Numéro Etudiant</a></td>
+            <td><span th:text="${student.firstName}">Prénom</span></td>
+            <td><span th:text="${student.lastName}">Nom</span></td>
+            <td><span th:text="${student.mail}">Mail</span></td>
+            <td><span th:text="${student.pwdHash}">Mots de passe</span></td>
+            <td><span th:text="${student.username}">pseudo</span></td>
+            <td>
+                <a th:href="@{'/students/' + ${student.numStudent} + '/reviews'}">
+                    Voir les avis
+                </a>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<footer>
+    <p>&copy; 2025 Équipe Croussards (Basile DUFRENE-Evan RIBOULEAU-Stephane CASTAN) - L3 Informatique</p>
+</footer>
+
+<script th:src="@{/js/main.js}"></script>
+
+</body>
+</html>
+
