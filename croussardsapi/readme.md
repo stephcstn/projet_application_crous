@@ -57,6 +57,23 @@ Tables principales générées automatiquement :
 - `STUDENT` – Informations sur les étudiants  
 - `REVIEW` – Avis et notes des étudiants sur les restaurants
 
+## Documentation Interactive (Swagger)
+
+Le projet intègre **Swagger UI**, qui permet de visualiser et de tester tous les points d'entrée (endpoints) de l'API sans avoir besoin d'utiliser un outil externe comme Postman.
+
+![Swagger](https://img.shields.io/badge/Documentation-Swagger-85EA2D.svg?style=for-the-badge&logo=swagger)
+
+### Accès à l'interface
+Une fois l'application lancée, vous pouvez accéder à la documentation interactive ici :
+**URL** : [http://localhost:9007/swagger-ui/index.html](http://localhost:9007/swagger-ui/index.html)
+
+
+
+### Fonctionnalités disponibles :
+* **Visualisation** : Consultation de tous les contrôleurs (`Restaurant`, `Student`, `Review`).
+* **Test en direct** : Bouton "Try it out" pour envoyer des requêtes réelles et voir les réponses JSON.
+* **Schémas** : Description détaillée de la structure des objets (modèles) attendus par l'API.
+
 ## Endpoints Principaux
 
 | Méthode | Endpoint | Action |
@@ -72,6 +89,7 @@ Tables principales générées automatiquement :
 
 - IHM Base de données : http://localhost:8080/h2-console
 - Documentation Swagger pour intéragir avec l'api Rest : http://localhost:9007/swagger-ui/index.html
+
 
 
 
