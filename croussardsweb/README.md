@@ -28,7 +28,7 @@ Le frontend inclut actuellement les vues suivantes :
 * **Restaurants** : Liste complète (`restaurants.html`) et détails avec avis (`restaurant_reviews.html`).
 * **Avis** : Formulaire de dépôt d'avis (`review_form.html`).
 
-## 🚀 Comment lancer l'application (Multi-module)
+## Comment lancer l'application (Multi-module)
 
 Pour que l'interface fonctionne, vous devez impérativement lancer le **Backend** et le **Frontend** en même temps.
 
@@ -57,4 +57,5 @@ Une fois les deux serveurs lancés, le Frontend (`9008`) va automatiquement envo
 ## État d'avancement (L3 Gestion de Projet)
 * **Complété** : Structure globale, navigation, affichage des listes de restaurants et d'étudiants.
 * **En cours** : Finalisation du design CSS , intégration complète du formulaire d'avis et Gestion des sessions et persistance du login via le proxy étudiant.
+
 
