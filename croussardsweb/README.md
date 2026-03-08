@@ -28,14 +28,33 @@ Le frontend inclut actuellement les vues suivantes :
 * **Restaurants** : Liste complète (`restaurants.html`) et détails avec avis (`restaurant_reviews.html`).
 * **Avis** : Formulaire de dépôt d'avis (`review_form.html`).
 
-## Configuration Technique
+## 🚀 Comment lancer l'application (Multi-module)
 
-### Liaison avec l'API
-Pour fonctionner, ce frontend doit être connecté au backend. La configuration se trouve dans :
-`src/main/resources/application.properties`
+Pour que l'interface fonctionne, vous devez impérativement lancer le **Backend** et le **Frontend** en même temps.
 
-Assurez-vous que l'URL de l'API est correcte :
-```properties
-# Exemple de configuration pour pointer vers le backend
-api.server.url=http://localhost:9007
-```
+### 1. Lancement via IntelliJ IDEA
+1. **Démarrer l'API (Backend)** :
+   * Allez dans le module `croussardsapi`.
+   * Ouvrez la classe `CroussardsApplication.java`.
+   * Cliquez sur la flèche verte (**Run**).
+   * L'API sera active sur : `http://localhost:9007`.
+
+2. **Démarrer l'Interface (Web)** :
+   * Allez dans le module `croussardsweb`.
+   * Ouvrez la classe `CroussardsWebApplication.java`.
+   * Cliquez sur la flèche verte (**Run**).
+   * L'interface sera active sur : `http://localhost:9008`.
+
+
+### 2. Vérification de la communication
+Une fois les deux serveurs lancés, le Frontend (`9008`) va automatiquement envoyer des requêtes au Backend (`9007`) via les classes **Proxy**. 
+
+* **Test rapide** : Accédez à `http://localhost:9008/students`. Si la liste s'affiche (même vide), la connexion est établie.
+* **Problème de port ?** Si l'un des ports est déjà utilisé, vérifiez les fichiers `application.properties` respectifs :
+  * Backend : `server.port=9007`
+  * Frontend : `server.port=9008`
+
+## État d'avancement (L3 Gestion de Projet)
+* **Complété** : Structure globale, navigation, affichage des listes de restaurants et d'étudiants.
+* **En cours** : Finalisation du design CSS , intégration complète du formulaire d'avis et Gestion des sessions et persistance du login via le proxy étudiant.
+
