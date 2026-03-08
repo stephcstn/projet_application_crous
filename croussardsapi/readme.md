@@ -51,6 +51,7 @@ JDBC URL : jdbc:h2:mem:testdb
 Requêtes SQL : Hibernate transforme vos objets Java en tables SQL (RESTAURANT, STUDENT, REVIEW) pour assurer la cohérence des données.
 
 ## Endpoints Principaux
+
 | Méthode | Endpoint | Action |
 | :--- | :--- | :--- |
 | **GET** | `/restaurants` | Liste tous les restaurants du CROUS |
@@ -68,5 +69,6 @@ Requêtes SQL : Hibernate transforme vos objets Java en tables SQL (RESTAURANT, 
 
 - IHM Base de données : http://localhost:8080/h2-console
 - Documentation Swagger pour intéragir avec l'api Rest : http://localhost:9007/swagger-ui/index.html
+
 
 
