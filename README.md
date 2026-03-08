@@ -30,20 +30,3 @@ L'interface utilisateur permet d'interagir avec l'API de manière visuelle.
 * **Technologie** : Java avec moteur de templates **Thymeleaf**.
 * **État actuel** : Version préliminaire permettant d'afficher la liste des étudiants et des restaurants.
 * **Navigation** : Inclut des pages pour l'accueil, la connexion, la liste des étudiants et le détail des restaurants.
-
-## Installation et Lancement
-
-1.  **Compiler le projet** :
-    ```powershell
-    mvn clean install
-    ```
-2.  **Lancer l'API (Backend)** :
-    ```powershell
-    # Dans le dossier croussardsapi
-    mvn spring-boot:run
-    ```
-3.  **Lancer le Web (Frontend)** :
-    ```powershell
-    # Dans le dossier croussardsweb
-    mvn spring-boot:run
-    ```
