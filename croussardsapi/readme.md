@@ -26,23 +26,18 @@ L'architecture suit les standards de Spring Boot (Layered Architecture) :
 
 ## Prérequis
 
-* **JDK 21** ou supérieur (GraalVM 21 utilisé par défaut).
-* **Maven** (inclus via le wrapper `./mvnw`).
-* Un IDE comme **IntelliJ IDEA**.
+- **JDK 21** ou supérieur (GraalVM 21 recommandé).  
+- **IDE** (IntelliJ IDEA, Eclipse, VS Code…).  
+- **Maven** n’est pas obligatoire si vous lancez le projet via l’IDE.  
 
-## Configuration et Lancement
+## Lancement de l'application
 
-### 1. Installation des dépendances
-Ouvrez un terminal à la racine du projet et exécutez :
-```powershell
-./mvnw clean install
+### Via votre IDE
+1. Ouvrez le projet dans votre IDE préféré.  
+2. Exécutez la classe principale :
+```java
+fr.univpoitiers.croussardsapi.CroussardsApplication
 ```
-
-### 2. Lancement de l'application
-``` PowerShell
-./mvnw spring-boot:run
-```
-L'API est configurée sur le port 9007 : http://localhost:9007
 
 ## Base de Données & SQL
 
@@ -75,6 +70,7 @@ Tables principales générées automatiquement :
 
 - IHM Base de données : http://localhost:8080/h2-console
 - Documentation Swagger pour intéragir avec l'api Rest : http://localhost:9007/swagger-ui/index.html
+
 
 
 
