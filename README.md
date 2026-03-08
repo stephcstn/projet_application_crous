@@ -31,7 +31,7 @@ L'interface utilisateur permet d'interagir avec l'API de manière visuelle.
 * **État actuel** : Version préliminaire permettant d'afficher la liste des étudiants et des restaurants.
 * **Navigation** : Inclut des pages pour l'accueil, la connexion, la liste des étudiants et le détail des restaurants.
 
-## 🛠️ Installation et Lancement
+## Installation et Lancement
 
 1.  **Compiler le projet** :
     ```powershell
