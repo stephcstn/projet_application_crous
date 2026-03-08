@@ -45,10 +45,20 @@ Ouvrez un terminal à la racine du projet et exécutez :
 L'API est configurée sur le port 9007 : http://localhost:9007
 
 ## Base de Données & SQL
-Le projet utilise H2 en mémoire avec génération automatique du schéma.
-Console H2 : http://localhost:9007/h2-console
-JDBC URL : jdbc:h2:mem:testdb
-Requêtes SQL : Hibernate transforme vos objets Java en tables SQL (RESTAURANT, STUDENT, REVIEW) pour assurer la cohérence des données.
+
+Le projet utilise **H2 en mémoire** avec génération automatique du schéma.
+
+- **Console H2** : [http://localhost:9007/h2-console](http://localhost:9007/h2-console)  
+- **JDBC URL** : `jdbc:h2:mem:testdb`
+
+### Requêtes SQL
+
+Hibernate transforme vos objets Java en tables SQL pour assurer la cohérence des données.  
+Tables principales générées automatiquement :  
+
+- `RESTAURANT` – Informations sur les restaurants  
+- `STUDENT` – Informations sur les étudiants  
+- `REVIEW` – Avis et notes des étudiants sur les restaurants
 
 ## Endpoints Principaux
 
@@ -61,14 +71,11 @@ Requêtes SQL : Hibernate transforme vos objets Java en tables SQL (RESTAURANT, 
 | **POST** | `/students` | Inscription d'un nouvel étudiant |
 | **POST** | `/students/authenticate` | Se connecter à l'application |
 
-| **GET** | '/restaurantsListe' | tous les restaurants du CROUSGET/restaurants/{id}/reviewsVoir tous les avis d'un restaurant spécifiquePOST/reviewsPublier un nouvel avis sur un restaurantPOST/studentsCréer un compte étudiant (Inscription)POST/students/authenticateSe connecter à l'applicationGET/students/{id}/reviewsVoir l'historique de ses propres avis
-
-
-
 ## Urls utiles
 
 - IHM Base de données : http://localhost:8080/h2-console
 - Documentation Swagger pour intéragir avec l'api Rest : http://localhost:9007/swagger-ui/index.html
+
 
 
 
