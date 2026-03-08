@@ -45,6 +45,8 @@ Le projet utilise **H2 en mémoire** avec génération automatique du schéma.
 
 - **Console H2** : [http://localhost:9007/h2-console](http://localhost:9007/h2-console)  
 - **JDBC URL** : `jdbc:h2:mem:testdb`
+- User : `sa`  
+- Password : *(vide)*
 
 ### Requêtes SQL
 
@@ -70,6 +72,7 @@ Tables principales générées automatiquement :
 
 - IHM Base de données : http://localhost:8080/h2-console
 - Documentation Swagger pour intéragir avec l'api Rest : http://localhost:9007/swagger-ui/index.html
+
 
 
 
