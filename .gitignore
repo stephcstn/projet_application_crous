@@ -1,0 +1,6 @@
+# --- Dossiers générés par la compilation ---
+target/
+
+# --- Dossiers de configuration d'IntelliJ IDEA ---
+.idea/
+*.iml
