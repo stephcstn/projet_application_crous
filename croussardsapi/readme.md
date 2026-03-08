@@ -38,8 +38,35 @@ Ouvrez un terminal à la racine du projet et exécutez :
 ./mvnw clean install
 ```
 
+### 2. Lancement de l'application
+``` PowerShell
+./mvnw spring-boot:run
+```
+L'API est configurée sur le port 9007 : http://localhost:9007
+
+## Base de Données & SQL
+Le projet utilise H2 en mémoire avec génération automatique du schéma.
+Console H2 : http://localhost:9007/h2-console
+JDBC URL : jdbc:h2:mem:testdb
+Requêtes SQL : Hibernate transforme vos objets Java en tables SQL (RESTAURANT, STUDENT, REVIEW) pour assurer la cohérence des données.
+
+## Endpoints Principaux
+| Méthode | Endpoint | Action |
+| :--- | :--- | :--- |
+| **GET** | `/restaurants` | Liste tous les restaurants du CROUS |
+| **GET** | `/restaurants/{id}/reviews` | Voir tous les avis d'un restaurant spécifique |
+| **GET** | `/students/{id}/reviews` | Voir l'historique de ses propres avis |
+| **POST** | `/reviews` | Permet à un étudiant de publier un nouvel avis |
+| **POST** | `/students` | Inscription d'un nouvel étudiant |
+| **POST** | `/students/authenticate` | Se connecter à l'application |
+
+| **GET** | '/restaurantsListe' | tous les restaurants du CROUSGET/restaurants/{id}/reviewsVoir tous les avis d'un restaurant spécifiquePOST/reviewsPublier un nouvel avis sur un restaurantPOST/studentsCréer un compte étudiant (Inscription)POST/students/authenticateSe connecter à l'applicationGET/students/{id}/reviewsVoir l'historique de ses propres avis
+
+
+
 ## Urls utiles
 
 - IHM Base de données : http://localhost:8080/h2-console
-- Documentation Swagger pour intéragir avec l'api Rest : http://localhost:8080/swagger-ui/index.html
+- Documentation Swagger pour intéragir avec l'api Rest : http://localhost:9007/swagger-ui/index.html
+
 
