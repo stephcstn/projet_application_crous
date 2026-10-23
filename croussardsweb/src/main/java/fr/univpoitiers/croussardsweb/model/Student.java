@@ -1,12 +1,12 @@
 package fr.univpoitiers.croussardsweb.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import java.util.List;
 
 @Data
 public class Student {
 
-    private Long numStudent;
+    private Long id;
 
     private String lastName;
 
@@ -17,7 +17,5 @@ public class Student {
     private String pwdHash;
 
     private String username;
-
-    private List<Review> reviews;
 
 }

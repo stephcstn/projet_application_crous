@@ -2,6 +2,7 @@ package fr.univpoitiers.croussardsapi.service;
 
 import fr.univpoitiers.croussardsapi.model.Review;
 import fr.univpoitiers.croussardsapi.model.Student;
+import fr.univpoitiers.croussardsapi.repository.ReviewRepository;
 import fr.univpoitiers.croussardsapi.repository.StudentRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     public Student getStudent(Long id) {
         return studentRepository.findById(id)
@@ -35,13 +39,12 @@ public class StudentService {
     }
 
     public void updateStudent (Student student, Student updateStudent){
-        student.setNumStudent(updateStudent.getNumStudent());
+        student.setId(updateStudent.getId());
         student.setLastName(updateStudent.getLastName().toUpperCase());
         student.setFirstName(updateStudent.getFirstName().toUpperCase());
         student.setUsername(updateStudent.getUsername().toLowerCase());
         student.setPwdHash(updateStudent.getPwdHash());
         student.setMail(updateStudent.getMail());
-        student.setReviews(updateStudent.getReviews());
     }
 
 
@@ -53,12 +56,11 @@ public class StudentService {
         }
     }
 
-    public Iterable<Review> getReviews(Long idStudent){
-        Student student = getStudent(idStudent);
-        return student.getReviews();
+    public Iterable<Review> getReviewsByStudent(Long idStudent){
+        return reviewRepository.findByStudentId(idStudent);
     }
 
-    public Student authenticate(String username, String pwdHash) {
+    public Student login(String username, String pwdHash) {
         Student student = studentRepository.findByUsername(username);
 
         if (student != null && student.getPwdHash().equals(pwdHash)) {

@@ -1,7 +1,11 @@
 package fr.univpoitiers.croussardsweb.service;
 
+import fr.univpoitiers.croussardsweb.model.Restaurant;
 import fr.univpoitiers.croussardsweb.model.Review;
+import fr.univpoitiers.croussardsweb.model.Student;
+import fr.univpoitiers.croussardsweb.repository.RestaurantProxy;
 import fr.univpoitiers.croussardsweb.repository.ReviewProxy;
+import fr.univpoitiers.croussardsweb.repository.StudentProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -12,6 +16,12 @@ public class ReviewService {
     @Autowired
     private ReviewProxy reviewProxy;
 
+    @Autowired
+    private RestaurantProxy restaurantProxy;
+
+    @Autowired
+    private StudentProxy studentProxy;
+
     public Review getReview(Long id) {
         return reviewProxy.getReview(id);
     }
@@ -20,33 +30,20 @@ public class ReviewService {
         return reviewProxy.getReviews();
     }
 
-    public void deleteReview(final int id) {
-        reviewProxy.deleteReview(id);
+    public Iterable<Review> getReviewsByStudentId(Long id){
+        return reviewProxy.getReviewsByStudentId(id); }
+
+    public Iterable<Review> getReviewsByRestaurantId(Long id){
+        return reviewProxy.getReviewsByRestaurantId(id);
     }
 
-    public Review saveReview(Review review) {
-        Review savedReview;
+    public Review createReview(Review review, Long restaurantId, Long studentId) {
+        Restaurant restaurant = restaurantProxy.getRestaurant(restaurantId);
+        Student student = studentProxy.getStudent(studentId);
 
-        if (review.getIdReview() == null) {
-            savedReview = reviewProxy.createReview(review);
-        } else {
-            savedReview = reviewProxy.updateReview(review);
-        }
+        review.setRestaurant(restaurant);
+        review.setStudent(student);
 
-        return savedReview;
-    }
-
-    public ResponseEntity<Review> responseReview(Review review) {
-        if (review == null){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(review);
-    }
-
-    public ResponseEntity<Iterable<Review>> responseReviews(Iterable<Review> reviews){
-        if (reviews == null){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(reviews);
+        return reviewProxy.createReview(review);
     }
 }

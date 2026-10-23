@@ -23,17 +23,15 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_review")
-    private Long idReview;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "id_student")
-    @JsonIgnoreProperties({"reviews"})
     private Student student;
 
 
     @ManyToOne
     @JoinColumn(name = "id_resto")
-    @JsonIgnoreProperties({"reviews"})
     private Restaurant restaurant;
 
     @Min(1)

@@ -28,7 +28,7 @@ public class RestaurantService {
     public Restaurant saveRestaurant(Restaurant restaurant) {
         Restaurant savedRestaurant;
 
-        if (restaurant.getIdResto() == null) {
+        if (restaurant.getId() == null) {
             savedRestaurant = restaurantProxy.createRestaurant(restaurant);
         } else {
             savedRestaurant = restaurantProxy.updateRestaurant(restaurant);

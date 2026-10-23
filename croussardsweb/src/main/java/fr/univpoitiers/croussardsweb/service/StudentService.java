@@ -20,22 +20,18 @@ public class StudentService {
     }
 
     public Student saveStudent(Student student) {
-        Student savedStudent;
-
         student.setLastName(student.getLastName().toUpperCase());
         student.setFirstName(student.getFirstName().toUpperCase());
 
-        if (student.getNumStudent() == null) {
-            savedStudent = studentProxy.createStudent(student);
+        if (student.getId() == null) {
+            return studentProxy.createStudent(student);
         } else {
-            savedStudent = studentProxy.updateStudent(student);
+            return studentProxy.updateStudent(student);
         }
-
-        return savedStudent;
     }
 
     public Student loginStudent(String username, String password) {
-        return studentProxy.authenticate(username, password);
+        return studentProxy.login(username, password);
     }
 
 

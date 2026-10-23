@@ -53,16 +53,6 @@ public class StudentProxy {
         return response.getBody();
     }
 
-    public void deleteStudent(final int id) {
-        String baseApiUrl = customProperties.getApiUrl();
-        String deleteStudentUrl = baseApiUrl + "/students/" + id;
-
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.delete(deleteStudentUrl);
-
-        log.debug("Delete Student call");
-    }
-
     public Student createStudent(Student student) {
         String baseApiUrl = customProperties.getApiUrl();
         String createStudentUrl = baseApiUrl + "/students";
@@ -83,7 +73,7 @@ public class StudentProxy {
 
     public Student updateStudent(Student student) {
         String baseApiUrl = customProperties.getApiUrl();
-        String updateStudentUrl = baseApiUrl + "/students/" + student.getNumStudent();
+        String updateStudentUrl = baseApiUrl + "/students/" + student.getId();
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.put(updateStudentUrl, student);
@@ -93,12 +83,12 @@ public class StudentProxy {
         return student;
     }
 
-    public Student authenticate(String mail, String pwdHash) {
-
-        String authenticateUrl = customProperties.getApiUrl() + "/students/authenticate";
+    public Student login(String username, String pwdHash) {
+        String baseApiUrl = customProperties.getApiUrl();
+        String authenticateUrl = baseApiUrl + "/students/login";
 
         Student loginData = new Student();
-        loginData.setMail(mail);
+        loginData.setUsername(username);
         loginData.setPwdHash(pwdHash);
 
         HttpEntity<Student> request = new HttpEntity<>(loginData);

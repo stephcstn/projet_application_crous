@@ -16,7 +16,22 @@
         <h1>Croussards</h1>
         <ul>
             <li><a th:href="@{/}">Accueil</a></li>
-            <li><a th:href="@{/login}">Connexion</a></li>
+
+            <!-- Affiché si l'utilisateur N'EST PAS connecté -->
+            <li th:if="${session.currentStudentId == null}">
+                <a th:href="@{/login}">Connexion</a>
+            </li>
+
+            <!-- Affiché si l'utilisateur EST connecté -->
+            <li th:if="${session.currentStudentId != null}">
+                <a th:href="@{/students/{id}/reviews(id=${session.currentStudentId})}">
+                    Profile
+                </a>
+            </li>
+            <li th:if="${session.currentStudentId != null}">
+                <a th:href="@{/logout}">Déconnexion</a>
+            </li>
+
             <li><a th:href="@{/students}">Etudiants</a></li>
             <li><a th:href="@{/restaurants}">Restaurants</a></li>
         </ul>
@@ -47,14 +62,14 @@
             <td colspan="2">Aucun étudiant en base de données</td>
         </tr>
         <tr th:each="student: ${students}">
-            <td><a th:href="@{'/students/' + ${student.numStudent}}" th:text="${student.numStudent}">Numéro Etudiant</a></td>
+            <td><a th:href="@{'/students/' + ${student.id}}" th:text="${student.id}">Numéro Etudiant</a></td>
             <td><span th:text="${student.firstName}">Prénom</span></td>
             <td><span th:text="${student.lastName}">Nom</span></td>
             <td><span th:text="${student.mail}">Mail</span></td>
             <td><span th:text="${student.pwdHash}">Mots de passe</span></td>
             <td><span th:text="${student.username}">pseudo</span></td>
             <td>
-                <a th:href="@{'/students/' + ${student.numStudent} + '/reviews'}">
+                <a th:href="@{'/students/' + ${student.id} + '/reviews'}">
                     Voir les avis
                 </a>
             </td>

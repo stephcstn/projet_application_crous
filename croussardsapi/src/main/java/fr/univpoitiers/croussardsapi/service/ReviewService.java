@@ -26,6 +26,9 @@ public class ReviewService {
     }
 
     public Review saveReview(Review review) {
+        if (review.getDatePubli() == null){
+            review.setDatePubli(java.time.LocalDate.now());
+        }
         return reviewRepository.save(review);
     }
 
@@ -39,7 +42,7 @@ public class ReviewService {
         review.setDatePubli(updateReview.getDatePubli());
         review.setStudent(updateReview.getStudent());
         review.setRestaurant(updateReview.getRestaurant());
-        review.setIdReview(updateReview.getIdReview());
+        review.setId(updateReview.getId());
     }
 
     public ResponseEntity<?> myResponse(Object body) {

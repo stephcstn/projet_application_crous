@@ -1,75 +1,80 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Croussards - Avis & Restaurants</title>
+    <title>Croussards - Ajouter un avis</title>
 
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo-container">
-                <img th:src="@{/images/croussards-logo.png}" alt="Logo Croussards">
-            </div>
-            <h1>Croussards </h1>
-            <ul>
-                <li><a th:href="@{/}">Accueil</a></li>
-                <li><a th:href="@{/login}">Connexion</a></li>
-                <li><a th:href="@{/students}">Etudiants</a></li>
-                <li><a th:href="@{/restaurants}">Restaurants</a></li>
-            </ul>
-            <div class="brand-container">
-                <img th:src="@{/images/Logo-up.svg}" alt="Logo Croussards">
-            </div>
-        </nav>
-    </header>
+<header>
+    <nav>
+        <div class="logo-container">
+            <img th:src="@{/images/croussards-logo.png}" alt="Logo Croussards">
+        </div>
+        <h1>Croussards</h1>
+        <ul>
+            <li><a th:href="@{/}">Accueil</a></li>
 
-    <main class="container">
+            <!-- Affiché si l'utilisateur N'EST PAS connecté -->
+            <li th:if="${session.currentStudentId == null}">
+                <a th:href="@{/login}">Connexion</a>
+            </li>
 
-        <h1>Ajouter un Nouvel Avis</h1>
+            <!-- Affiché si l'utilisateur EST connecté -->
+            <li th:if="${session.currentStudentId != null}">
+                <a th:href="@{/students/{id}/reviews(id=${session.currentStudentId})}">
+                    Profile
+                </a>
+            </li>
+            <li th:if="${session.currentStudentId != null}">
+                <a th:href="@{/logout}">Déconnexion</a>
+            </li>
 
-        <form id="reviewForm">
+            <li><a th:href="@{/students}">Etudiants</a></li>
+            <li><a th:href="@{/restaurants}">Restaurants</a></li>
+        </ul>
+        <div class="brand-container">
+            <img th:src="@{/images/Logo-up.svg}" alt="Logo Croussards">
+        </div>
+    </nav>
+</header>
 
-            <div>
-                <label for="etudiantId">Etudiant :</label>
-                <select id="etudiantId" required>
-                    <option value="">-- Choisir un etudiant --</option>
-                    <option th:each="restaurant : ${s}">
-                            th:value="${resto.idResto}"
-                            th:text="${resto.name}">Nom du Restaurant</option>
-                </select>
-            </div>
+<main class="container">
 
-            <div>
-                <label for="nbStars">Note (1-5 étoiles) :</label>
-                <select id="nbStars" required>
-                    <option value="5">5 ⭐</option>
-                    <option value="4">4 ⭐</option>
-                    <option value="3">3 ⭐</option>
-                    <option value="2">2 ⭐</option>
-                    <option value="1">1 ⭐</option>
-                </select>
-            </div>
+    <h1>Ajouter un Nouvel Avis pour <span th:text="${restaurant.name}">Nom du Restaurant</span></h1>
 
-            <div>
-                <label for="comments">Commentaire :</label>
-                <textarea id="comments" rows="4" maxlength="500"></textarea>
-            </div>
+    <form th:action="@{/reviews/save}" th:object="${review}" method="post">
 
-            <button type="submit">Soumettre l'Avis</button>
+        <input type="hidden" name="restaurantId" th:value="${restaurant.id}" />
 
-            <p id="message"></p>
-        </form>
+        <div>
+            <label for="nbStars">Note (1-5 étoiles) :</label>
+            <select id="nbStars" th:field="*{nbStars}" required>
+                <option value="5">5 ⭐</option>
+                <option value="4">4 ⭐</option>
+                <option value="3">3 ⭐</option>
+                <option value="2">2 ⭐</option>
+                <option value="1">1 ⭐</option>
+            </select>
+        </div>
 
-    </main>
+        <div>
+            <label for="comments">Commentaire :</label>
+            <textarea id="comments" th:field="*{comments}" rows="4" maxlength="500" placeholder="Votre avis..."></textarea>
+        </div>
 
-    <footer>
-        <p>&copy; 2025 Équipe Croussards (Basile DUFRENE-Evan RIBOULEAU-Stephane CASTAN) - L3 Informatique</p>
-    </footer>
+        <button type="submit">Soumettre l'Avis</button>
+    </form>
 
-    <script src="../static/js/main.js"></script>
+</main>
+
+<footer>
+    <p>&copy; 2026 Équipe Croussards (Basile DUFRENE-Evan RIBOULEAU-Stephane CASTAN) - L3 Informatique</p>
+</footer>
+
+<script th:src="@{/js/main.js}"></script>
 
 </body>
 </html>

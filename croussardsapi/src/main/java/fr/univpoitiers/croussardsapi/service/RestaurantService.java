@@ -3,6 +3,7 @@ package fr.univpoitiers.croussardsapi.service;
 import fr.univpoitiers.croussardsapi.model.Restaurant;
 import fr.univpoitiers.croussardsapi.model.Review;
 import fr.univpoitiers.croussardsapi.repository.RestaurantRepository;
+import fr.univpoitiers.croussardsapi.repository.ReviewRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,9 @@ public class RestaurantService {
     @Autowired
     private RestaurantRepository restaurantRepository;
 
+    @Autowired
+    private ReviewRepository reviewRepository;
+
     public Restaurant getRestaurant(Long id) {
         return restaurantRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Restaurant not found"));
@@ -27,9 +31,7 @@ public class RestaurantService {
     }
 
     public Iterable<Review> getReviewsByRestaurant(Long id) {
-        Restaurant restaurant = getRestaurant(id);
-        Iterable<Review> reviews = restaurant.getReviews();
-        return reviews;
+        return reviewRepository.findByRestaurantId(id);
     }
 
     public Restaurant saveRestaurant(Restaurant restaurant) {
@@ -43,8 +45,7 @@ public class RestaurantService {
     public void updateRestaurant(Restaurant restaurant, Restaurant updateRestaurant) {
         restaurant.setName(updateRestaurant.getName());
         restaurant.setAddress(updateRestaurant.getAddress());
-        restaurant.setReviews(updateRestaurant.getReviews());
-        restaurant.setIdResto(updateRestaurant.getIdResto());
+        restaurant.setId(updateRestaurant.getId());
         restaurant.setTypeResto(updateRestaurant.getTypeResto());
     }
 
@@ -54,10 +55,5 @@ public class RestaurantService {
         } else {
             return ResponseEntity.notFound().build();
         }
-    }
-
-    public Iterable<Review> getReviews(Long idRestaurant) {
-        Restaurant restaurant = getRestaurant(idRestaurant);
-        return restaurant.getReviews();
     }
 }

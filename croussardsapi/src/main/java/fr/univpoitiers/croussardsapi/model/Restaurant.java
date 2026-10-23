@@ -19,7 +19,7 @@ public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_resto")
-    private Long idResto;
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -29,9 +29,5 @@ public class Restaurant {
 
     @Column(name = "type_resto")
     private String typeResto;
-
-    @OneToMany(mappedBy = "restaurant")
-    @JsonIgnoreProperties("restaurant")
-    private List<Review> reviews = new ArrayList<>();
 
 }

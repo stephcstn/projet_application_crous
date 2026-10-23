@@ -19,7 +19,7 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_student")
-    private Long numStudent;
+    private Long id;
 
     @Column(name = "last_name")
     private String lastName;
@@ -35,9 +35,5 @@ public class Student {
 
     @Column(name = "username")
     private String username;
-
-    @OneToMany(mappedBy = "student")
-    @JsonIgnoreProperties("student")
-    private List<Review> reviews = new ArrayList<>();
 
 }

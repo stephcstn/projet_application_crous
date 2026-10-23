@@ -1,6 +1,8 @@
 package fr.univpoitiers.croussardsweb.controller;
 
+import fr.univpoitiers.croussardsweb.model.Review;
 import fr.univpoitiers.croussardsweb.model.Student;
+import fr.univpoitiers.croussardsweb.service.ReviewService;
 import fr.univpoitiers.croussardsweb.service.StudentService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private ReviewService reviewService;
 
 
     @GetMapping("/students")
@@ -44,13 +49,14 @@ public class StudentController {
     @GetMapping("/students/{id}/reviews")
     public String getStudentReviews(Model model, @PathVariable Long id) {
         Student student = studentService.getStudent(id);
+        Iterable<Review> reviews = reviewService.getReviewsByStudentId(id);
 
         if (student == null) {
             return "/students";
         }
 
         model.addAttribute("student", student);
-        model.addAttribute("reviews", student.getReviews());
+        model.addAttribute("reviews", reviews);
 
         return "student_reviews";
     }
@@ -69,7 +75,7 @@ public class StudentController {
         Student student = studentService.loginStudent(username, pwdHash);
 
         if (student != null) {
-            session.setAttribute("currentStudentId", student.getNumStudent());
+            session.setAttribute("currentStudentId", student.getId());
             session.setAttribute("currentUsername", student.getUsername());
 
             return "redirect:/";
@@ -77,6 +83,11 @@ public class StudentController {
             model.addAttribute("loginError", "Email ou mot de passe incorrect.");
             return "login";
         }
+    }
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
     }
 
     @GetMapping("/register")

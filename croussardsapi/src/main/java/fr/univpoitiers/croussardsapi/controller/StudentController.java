@@ -51,14 +51,14 @@ public class StudentController {
 
     @GetMapping("/{id}/reviews")
     public ResponseEntity<?> getReviewsByStudent(@PathVariable Long id) {
-        Iterable<Review> reviews = studentService.getReviews(id);
+        Iterable<Review> reviews = studentService.getReviewsByStudent(id);
         return studentService.myResponse(reviews);
     }
 
-    @PostMapping("/authenticate")
+    @PostMapping("/login")
     public ResponseEntity<Student> authenticateStudent(@RequestBody Student loginData) {
 
-        Student authenticatedStudent = studentService.authenticate(
+        Student authenticatedStudent = studentService.login(
                 loginData.getUsername(),
                 loginData.getPwdHash()
         );
