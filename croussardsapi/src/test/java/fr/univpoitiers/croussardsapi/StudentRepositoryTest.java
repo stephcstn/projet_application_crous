@@ -33,7 +33,7 @@ class StudentRepositoryTest {
         entityManager.persistAndFlush(student);
 
         // retrouver l'étudiant par son ID
-        Optional<Student> foundStudent = studentRepository.findById(student.getNumStudent());
+        Optional<Student> foundStudent = studentRepository.findById(student.getId());
 
         // l'etudiant est trouvé et ses données sont correctes
         assertThat(foundStudent).isPresent();

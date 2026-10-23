@@ -31,7 +31,7 @@ class RestaurantRepositoryTest {
         entityManager.persistAndFlush(restaurant);
 
         // retrouver le restaurant par son ID
-        Optional<Restaurant> found = restaurantRepository.findById(restaurant.getIdResto());
+        Optional<Restaurant> found = restaurantRepository.findById(restaurant.getId());
 
         //Vérifie que le restaurant a été trouvé et que ses données sont correctes
         assertThat(found).isPresent();

@@ -49,12 +49,12 @@ class ReviewRepositoryTest {
         entityManager.persistAndFlush(review);
 
         // retrouver la review par son ID et vérifier les relations
-        Optional<Review> foundReview = reviewRepository.findById(review.getIdReview());
+        Optional<Review> foundReview = reviewRepository.findById(review.getId());
 
         // la review est trouvée et ses données sont correctes
         assertThat(foundReview).isPresent();
         assertThat(foundReview.get().getComments()).isEqualTo("super bon!");
-        assertThat(foundReview.get().getStudent().getNumStudent()).isEqualTo(student.getNumStudent());
-        assertThat(foundReview.get().getRestaurant().getIdResto()).isEqualTo(restaurant.getIdResto());
+        assertThat(foundReview.get().getStudent().getId()).isEqualTo(student.getId());
+        assertThat(foundReview.get().getRestaurant().getId()).isEqualTo(restaurant.getId());
     }
 }
